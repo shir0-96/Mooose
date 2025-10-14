@@ -32,7 +32,7 @@
 /* Rotary encoder */
 #define ENCODERS_PAD_A { D1 }
 #define ENCODERS_PAD_B { B6 }
-#define ENCODER_RESOLUTION 4
+#define ENCODER_RESOLUTION 2
 
 // #define TAPPING_FORCE_HOLD
 #define TAPPING_TERM 200
@@ -43,6 +43,10 @@
 
 // 左右どちらがマスターか判定
 #define SPLIT_USB_TIMEOUT       3000
+
+#define NO_SUSPEND_POWER_DOWN
+#define USB_SUSPEND_WAKEUP_DELAY 200
+
 #define SPLIT_POINTING_ENABLE
 
 // トラックボールが左右どちら側にあるか指定
