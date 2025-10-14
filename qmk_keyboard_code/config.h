@@ -37,13 +37,18 @@
 // #define TAPPING_FORCE_HOLD
 #define TAPPING_TERM 200
 
-#define MASTER_RIGHT
 #define SOFT_SERIAL_PIN D0
 
+#define SPLIT_USB_DETECT
+
+// 左右どちらがマスターか判定
+#define SPLIT_USB_TIMEOUT       3000
 #define SPLIT_POINTING_ENABLE
-// #define POINTING_DEVICE_COMBINED
-#define POINTING_DEVICE_RIGHT
-// #define POINTING_DEVICE_LEFT
+
+// トラックボールが左右どちら側にあるか指定
+// #define POINTING_DEVICE_RIGHT
+#define POINTING_DEVICE_LEFT
+
 #define DISABLE_SYNC_TIMER
 // #define COMBO_NO_TIMER
 // #define SPLIT_MAX_CONNECTION_ERRORS 0
