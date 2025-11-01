@@ -126,8 +126,8 @@ bool isScrollMode;
 bool isDragMode1;
 bool isDragMode2;
 bool isPointM_low;
-static uint16_t _cpi = 1250;
-static uint16_t temp_cpi = 1250;
+static uint16_t _cpi = 850;
+static uint16_t temp_cpi = 850;
 static double angle_degrees = 0;
 static double cos_theta = 1;
 static double sin_theta = 1;
@@ -332,11 +332,11 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 report_mouse_t pointing_device_task_user(report_mouse_t mouse_report) {
     float temp_x,temp_y;
     if (isScrollMode) {
-        pointing_device_set_cpi(1250);
-        temp_x = -0.4*((float)mouse_report.x - (float)mouse_report.y);
-        temp_y = 0.4*((float)mouse_report.x + (float)mouse_report.y);
+        pointing_device_set_cpi(300);
         // temp_x = mouse_report.x - mouse_report.y;
         // temp_y = mouse_report.x + mouse_report.y;
+        temp_x = -0.4*((float)mouse_report.x * cos_theta - (float)mouse_report.y * sin_theta);
+        temp_y =  0.4*((float)mouse_report.x * sin_theta + (float)mouse_report.y * cos_theta);
         mouse_report.h = temp_x;
         mouse_report.v = temp_y;
         mouse_report.x=0;
