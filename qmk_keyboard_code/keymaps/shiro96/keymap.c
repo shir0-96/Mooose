@@ -354,6 +354,21 @@ report_mouse_t pointing_device_task_user(report_mouse_t mouse_report) {
         temp_y = -1.0*((float)mouse_report.x * sin_theta + (float)mouse_report.y * cos_theta);
         mouse_report.h = temp_x;
         mouse_report.v = temp_y;
+        // 小数点以下の動きを蓄積することで、微小な動きも逃さずスクロールに変換します
+        // raw_h,raw_v を下げることでスクロールを減らす
+        float raw_h =  0.1f * ((float)mouse_report.x * cos_theta - (float)mouse_report.y * sin_theta);
+        float raw_v = -0.1f * ((float)mouse_report.x * sin_theta + (float)mouse_report.y * cos_theta);
+
+        scroll_accum_h += raw_h;
+        scroll_accum_v += raw_v;
+
+        mouse_report.h = (int8_t)scroll_accum_h;
+        mouse_report.v = (int8_t)scroll_accum_v;
+
+        // 出力した整数分を差し引き、余りを次回に持ち越します
+        scroll_accum_h -= mouse_report.h;
+        scroll_accum_v -= mouse_report.v;
+
         mouse_report.x=0;
         mouse_report.y=0;
     }
