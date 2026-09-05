@@ -126,14 +126,26 @@ bool isScrollMode;
 bool isDragMode1;
 bool isDragMode2;
 bool isPointM_low;
-static uint16_t _cpi = 850;
-static uint16_t temp_cpi = 850;
-static double angle_degrees = 0;
-static double cos_theta = 1;
-static double sin_theta = 1;
+static uint16_t _cpi = 850;;
+static uint16_t temp_cpi = 850;;
+static uint16_t last_cpi = 0; // CPI変更検知用
+
+static double angle_degrees = 130;   // デフォルトの角度（減らすと左回り、増やすと右回り）
+static double cos_theta;
+static double sin_theta;
+static float scroll_accum_h = 0;
+static float scroll_accum_v = 0;
+
+static void update_rotation_coords(void) {
+    cos_theta = cos(angle_degrees * (M_PI / 180.0));
+    sin_theta = sin(angle_degrees * (M_PI / 180.0));
+}
+
+void keyboard_post_init_user(void) {
+    update_rotation_coords();
+}
 
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
-  pointing_device_set_cpi(1250);
   switch (keycode)
   {
     case LOWER:
@@ -294,28 +306,25 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     case MY_Anglep:
       if (record->event.pressed) {
         angle_degrees = angle_degrees + 3;
-        if (angle_degrees > 360){
-          angle_degrees=0;
+        if (angle_degrees >= 360){
+          angle_degrees -= 360;
         }
-        cos_theta = cos(angle_degrees * (M_PI / 180.0));
-        sin_theta = sin(angle_degrees * (M_PI / 180.0));
+        update_rotation_coords();
       }
       return false;
     case MY_Anglem:
       if (record->event.pressed) {
         angle_degrees = angle_degrees - 3;
         if (angle_degrees < 0){
-          angle_degrees=360;
+          angle_degrees += 360;
         }
-        cos_theta = cos(angle_degrees * (M_PI / 180.0));
-        sin_theta = sin(angle_degrees * (M_PI / 180.0));
+        update_rotation_coords();
       }
       return false;
     case MY_Angled:
       if (record->event.pressed) {
-        angle_degrees = 0;
-        cos_theta = 1;
-        sin_theta = 1;
+        angle_degrees = 130;
+        update_rotation_coords();
       }
       return false;
     default:
@@ -331,37 +340,43 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 
 report_mouse_t pointing_device_task_user(report_mouse_t mouse_report) {
     float temp_x,temp_y;
+    
+    // --- CPI設定の最適化 ---
+    // 毎フレーム set_cpi を呼ぶのをやめ、変更があった時のみ実行する
+    uint16_t target_cpi = isScrollMode ? 850 : (isPointM_low ? 500 : _cpi);
+    if (last_cpi != target_cpi) {
+        pointing_device_set_cpi(target_cpi);
+        last_cpi = target_cpi;
+    }
+
     if (isScrollMode) {
-        pointing_device_set_cpi(300);
-        // temp_x = mouse_report.x - mouse_report.y;
-        // temp_y = mouse_report.x + mouse_report.y;
-        temp_x = -0.4*((float)mouse_report.x * cos_theta - (float)mouse_report.y * sin_theta);
-        temp_y =  0.4*((float)mouse_report.x * sin_theta + (float)mouse_report.y * cos_theta);
+        temp_x =  1.0*((float)mouse_report.x * cos_theta - (float)mouse_report.y * sin_theta);
+        temp_y = -1.0*((float)mouse_report.x * sin_theta + (float)mouse_report.y * cos_theta);
         mouse_report.h = temp_x;
         mouse_report.v = temp_y;
         mouse_report.x=0;
         mouse_report.y=0;
     }
     else if(isPointM_low){
-        pointing_device_set_cpi(500);
         mouse_report.h = 0;
         mouse_report.v = 0;
-        temp_x = -mouse_report.x + mouse_report.y;
-        temp_y = -mouse_report.x - mouse_report.y;
-        mouse_report.x = temp_x;
-        mouse_report.y = temp_y;
+        mouse_report.x = (int8_t)(mouse_report.x * cos_theta - mouse_report.y * sin_theta);
+        mouse_report.y = (int8_t)(mouse_report.x * sin_theta + mouse_report.y * cos_theta);
+        temp_x = (float)(mouse_report.x * cos_theta - mouse_report.y * sin_theta);
+        temp_y = (float)(mouse_report.x * sin_theta + mouse_report.y * cos_theta);
+        mouse_report.x = (int8_t)temp_x;
+        mouse_report.y = (int8_t)temp_y;
     }
     else{
-        pointing_device_set_cpi(_cpi);
         mouse_report.h = 0;
         mouse_report.v = 0;
-        // temp_x = -mouse_report.x + mouse_report.y;
-        // temp_y = -mouse_report.x - mouse_report.y;
-        temp_x = (int16_t)(-mouse_report.x * cos_theta + mouse_report.y * sin_theta);
-        temp_y = (int16_t)(-mouse_report.x * sin_theta - mouse_report.y * cos_theta);
-        mouse_report.x = temp_x;
-        mouse_report.y = temp_y;
+        
+        // 標準的な回転行列による計算
+        temp_x = (float)(mouse_report.x * cos_theta - mouse_report.y * sin_theta);
+        temp_y = (float)(mouse_report.x * sin_theta + mouse_report.y * cos_theta);
+
+        mouse_report.x = (int8_t)temp_x; 
+        mouse_report.y = (int8_t)temp_y; 
     }
     return mouse_report;
 }
-
