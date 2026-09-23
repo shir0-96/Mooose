@@ -30,9 +30,7 @@
 // #define LAYER_STATE_8BIT
 
 /* Rotary encoder */
-#define ENCODERS_PAD_A { D1 }
-#define ENCODERS_PAD_B { B6 }
-#define ENCODER_RESOLUTION 2
+// ENCODERS_PAD_A / ENCODERS_PAD_B / ENCODER_RESOLUTION are now defined in info.json ("encoder" object).
 
 // #define TAPPING_FORCE_HOLD
 #define TAPPING_TERM 200

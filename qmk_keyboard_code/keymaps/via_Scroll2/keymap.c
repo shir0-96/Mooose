@@ -35,22 +35,22 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
       KC_LALT,KC_A,KC_S,KC_D,KC_F,KC_G,LCTL(KC_SLSH),
       KC_LSFT,KC_Z,KC_X,KC_C,KC_V,KC_B,KC_DEL,
       KC_LCTL,KC_LGUI,KC_LALT,NUM,KC_BSPC,KC_SPC,LOWER,
-      KC_MS_BTN3,      KC_6,   KC_7,   KC_8,   KC_9,   KC_0,    KC_PSCR,
-      KC_MS_BTN1,      KC_Y,   KC_U,   KC_I,   KC_O,   KC_P,    KC_INT3,
-      KC_MS_BTN3,      KC_H,   KC_J,   KC_K,   KC_L,   KC_SCLN, KC_QUOT,
-      KC_MS_BTN2,      KC_N,   KC_M,   KC_COMM,KC_DOT, KC_SLSH, KC_RSFT,
+      MS_BTN3,      KC_6,   KC_7,   KC_8,   KC_9,   KC_0,    KC_PSCR,
+      MS_BTN1,      KC_Y,   KC_U,   KC_I,   KC_O,   KC_P,    KC_INT3,
+      MS_BTN3,      KC_H,   KC_J,   KC_K,   KC_L,   KC_SCLN, KC_QUOT,
+      MS_BTN2,      KC_N,   KC_M,   KC_COMM,KC_DOT, KC_SLSH, KC_RSFT,
       RAISE,           KC_ENT, KC_MINS,AHK,    KC_RBRC,KC_NUHS, KC_LBRC
     ),
     [_LOWER] = LAYOUT(
       KC_ESC,KC_F2,KC_F2,KC_F3,KC_F4,KC_F5,KC_F11,
-      KC_TAB,LCTL(KC_T),KC_MS_BTN1,LGUI(KC_UP),LSFT(KC_F10),LALT(LSFT(KC_TAB)),0x0068,
+      KC_TAB,LCTL(KC_T),MS_BTN1,LGUI(KC_UP),LSFT(KC_F10),LALT(LSFT(KC_TAB)),0x0068,
       KC_LALT,LCTL(KC_W),LGUI(KC_LEFT),LALT(LCTL(KC_TAB)),LGUI(KC_RGHT),LALT(KC_TAB),0x0069,
       KC_LSFT,LGUI(KC_S),LALT(KC_F4),LGUI(KC_DOWN),LGUI(KC_T),LGUI(KC_TAB),KC_DEL,
       KC_LCTL,KC_LGUI,KC_LALT,_______,KC_BSPC,KC_SPC,_______,
       KC_EQL,            KC_F6 ,     KC_F7 ,     KC_F8 ,     KC_F9 ,     KC_F10 ,    KC_PAUS ,
       LCTL(LSFT(KC_TAB)),KC_PAST ,   KC_P7 ,     KC_P8 ,     KC_P9 ,     KC_PMNS ,   KC_INT3 ,
       LCTL(KC_TAB),      KC_PSLS ,   KC_P4 ,     KC_P5 ,     KC_P6 ,     KC_PPLS ,   MY_CPId,
-      KC_MS_BTN3 ,         KC_QUOT ,   KC_P1 ,     KC_P2 ,     KC_P3 ,     KC_EQL ,    KC_RSFT,
+      MS_BTN3 ,         KC_QUOT ,   KC_P1 ,     KC_P2 ,     KC_P3 ,     KC_EQL ,    KC_RSFT,
       _______,           KC_ENT ,    KC_MINS ,   KC_P0 ,     KC_PDOT ,   MY_CPIm ,   MY_CPIp
       ),
     [_RAISE] = LAYOUT(
@@ -60,22 +60,22 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
       KC_LSFT,KC_Z,KC_X,KC_C,KC_V,KC_B,KC_DEL,
       KC_LCTL,KC_LGUI,KC_LALT,NUM,KC_BSPC,KC_SPC,_______,
       KC_F12 ,        KC_F6 ,     KC_F7 ,     KC_F8 ,     KC_F9 ,     KC_F10 ,     KC_PAUS ,
-      KC_WWW_FORWARD, KC_MS_BTN1 ,  KC_HOME ,   KC_UP ,     KC_END ,    LSFT(KC_F10),KC_ESC ,
+      KC_WWW_FORWARD, MS_BTN1 ,  KC_HOME ,   KC_UP ,     KC_END ,    LSFT(KC_F10),KC_ESC ,
       KC_WWW_BACK,    KC_HOME ,   KC_LEFT ,   KC_DOWN ,   KC_RGHT ,   KC_END ,     MY_Angled ,
-      KC_MS_BTN3 ,      KC_PGDN ,   MY_Shrp    ,MY_Parentheses , MY_Squo, KC_PGUP,   KC_RSFT ,
-      _______,        MY_Br ,    KC_INT1 ,   AHK,        KC_WH_R ,    MY_Anglem ,   MY_Anglep
+      MS_BTN3 ,      KC_PGDN ,   MY_Shrp    ,MY_Parentheses , MY_Squo, KC_PGUP,   KC_RSFT ,
+      _______,        MY_Br ,    KC_INT1 ,   AHK,        MS_WHLR ,    MY_Anglem ,   MY_Anglep
     ),
     [_AHK] = LAYOUT(
       KC_ESC,KC_F2,KC_F2,KC_F3,KC_F4,KC_F5,KC_F11,
-      KC_TAB,KC_F15,KC_F16,KC_F17,KC_F18,KC_F19,KC_MS_BTN1,
-      KC_LALT,LCTL(KC_F15),LCTL(KC_F16),LCTL(KC_F17),LCTL(KC_F18),LCTL(KC_F19),KC_MS_BTN2,
+      KC_TAB,KC_F15,KC_F16,KC_F17,KC_F18,KC_F19,MS_BTN1,
+      KC_LALT,LCTL(KC_F15),LCTL(KC_F16),LCTL(KC_F17),LCTL(KC_F18),LCTL(KC_F19),MS_BTN2,
       KC_LSFT,LSFT(KC_F15),LSFT(KC_F16),LSFT(KC_F17),LSFT(KC_F18),LSFT(KC_F19),KC_DEL,
       KC_LCTL,KC_LGUI,KC_LALT,NUM,KC_BSPC,KC_SPC,_______,
       KC_F12 ,        KC_F6 ,       KC_F7,       KC_F8,       KC_F9,             KC_F10,  KC_PAUS,
-      KC_MS_BTN1,      KC_F20,       KC_F21,      KC_F22,      KC_F23,            KC_F24,  KC_ESC,
-      KC_MS_BTN3,  LCTL(KC_F20), LCTL(KC_F21), LCTL(KC_F22),LCTL(KC_F23),    LCTL(KC_F24),  KC_ESC,
-      KC_MS_BTN2,  LSFT(KC_F20), LSFT(KC_F21), LSFT(KC_F22),LSFT(KC_F23),    LSFT(KC_F24),  KC_RSFT,
-      _______,       KC_ENT ,      KC_INT1,  _______,         KC_WH_R,           KC_NO,  KC_LBRC
+      MS_BTN1,      KC_F20,       KC_F21,      KC_F22,      KC_F23,            KC_F24,  KC_ESC,
+      MS_BTN3,  LCTL(KC_F20), LCTL(KC_F21), LCTL(KC_F22),LCTL(KC_F23),    LCTL(KC_F24),  KC_ESC,
+      MS_BTN2,  LSFT(KC_F20), LSFT(KC_F21), LSFT(KC_F22),LSFT(KC_F23),    LSFT(KC_F24),  KC_RSFT,
+      _______,       KC_ENT ,      KC_INT1,  _______,         MS_WHLR,           KC_NO,  KC_LBRC
     ),
     [_NUM] = LAYOUT(
       KC_ESC,KC_F1,KC_F2,KC_F3,KC_F4,KC_F5,KC_F11,
@@ -86,7 +86,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
       KC_F12 ,    KC_F6 ,          KC_F7,     KC_F8,     KC_F9,       KC_F10,       KC_PSCR,
       KC_EQL,        LSFT(KC_6), LSFT(KC_7),LSFT(KC_8),LSFT(KC_9), LSFT(KC_0),         KC_ESC,
       KC_F12,         LALT(KC_6), LALT(KC_7), LALT(KC_8), LALT(KC_9), LALT(KC_0), KC_QUOT,
-      KC_MS_BTN3,       KC_F6 ,          KC_F7,     KC_F8,     KC_F9,       KC_F10,       KC_RSFT,
+      MS_BTN3,       KC_F6 ,          KC_F7,     KC_F8,     KC_F9,       KC_F10,       KC_RSFT,
       RAISE,          KC_ENT,          KC_MINS,   AHK,       KC_RBRC,     KC_NUHS,      KC_LBRC
     )
 };
@@ -94,9 +94,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
 #if defined(ENCODER_MAP_ENABLE)
 const uint16_t PROGMEM encoder_map[][NUM_ENCODERS][NUM_DIRECTIONS] = {
-    [_BASE] =   { ENCODER_CCW_CW(KC_MS_WH_UP, KC_MS_WH_DOWN),ENCODER_CCW_CW(KC_MS_WH_DOWN,KC_MS_WH_UP)},
-    [_LOWER] =  { ENCODER_CCW_CW(KC_MS_WH_UP, KC_MS_WH_DOWN),ENCODER_CCW_CW(KC_MS_WH_DOWN,KC_MS_WH_UP)},
-    [_RAISE] =  { ENCODER_CCW_CW(KC_MS_WH_UP, KC_MS_WH_DOWN),ENCODER_CCW_CW(KC_MS_WH_DOWN,KC_MS_WH_UP)},
+    [_BASE] =   { ENCODER_CCW_CW(MS_WHLU, MS_WHLD),ENCODER_CCW_CW(MS_WHLD,MS_WHLU)},
+    [_LOWER] =  { ENCODER_CCW_CW(MS_WHLU, MS_WHLD),ENCODER_CCW_CW(MS_WHLD,MS_WHLU)},
+    [_RAISE] =  { ENCODER_CCW_CW(MS_WHLU, MS_WHLD),ENCODER_CCW_CW(MS_WHLD,MS_WHLU)},
     [_AHK] =    { ENCODER_CCW_CW(KC_VOLU,KC_VOLD), ENCODER_CCW_CW(KC_VOLD, KC_VOLU)},
     [_NUM] =    { ENCODER_CCW_CW(KC_VOLU,KC_VOLD), ENCODER_CCW_CW(KC_VOLD, KC_VOLU)}
 };
@@ -105,15 +105,15 @@ const uint16_t PROGMEM encoder_map[][NUM_ENCODERS][NUM_DIRECTIONS] = {
 bool encoder_update_user(uint8_t index, bool clockwise) {
     if (index == 0) { /* First encoder */
         if (clockwise) {
-            tap_code(KC_MS_WH_DOWN);
+            tap_code(MS_WHLD);
         } else {
-            tap_code(KC_MS_WH_UP);
+            tap_code(MS_WHLU);
         }
     } else if (index == 1) {
         if (clockwise) {
-            tap_code(KC_MS_WH_DOWN);
+            tap_code(MS_WHLD);
         } else {
-            tap_code(KC_MS_WH_UP);
+            tap_code(MS_WHLU);
         }
     }
     return false;
